@@ -12,6 +12,22 @@
 
 namespace ecommerce_voucher\models;
 
-class Vouchers extends \cms_core\models\Base {}
+class Vouchers extends \cms_core\models\Base {
+
+	protected $_meta = [
+		'source' => 'ecommerce_vouchers'
+	];
+
+	protected static $_actsAs = [
+		'cms_core\extensions\data\behavior\Timestamp'
+	];
+
+	/*
+	public function isExpired($entity) {
+		$date = DateTime::createFromFormat('Y-m-d H:i:s', $entity->modified);
+		return strtotime(Settings::read('checkout.expire'), $date->getTimestamp()) < time();
+	}
+	 */
+}
 
 ?>
