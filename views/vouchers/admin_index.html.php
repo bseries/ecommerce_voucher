@@ -20,7 +20,6 @@ $this->set([
 				<tr>
 					<td data-sort="token" class="token emphasize list-sort"><?= $t('Code') ?>
 					<td data-sort="type" class="type list-sort"><?= $t('Type') ?>
-					<td data-sort="user" class="user list-sort"><?= $t('User') ?>
 					<td data-sort="created" class="date created list-sort desc"><?= $t('Created') ?>
 					<td class="actions">
 						<?= $this->form->field('search', [
@@ -32,21 +31,10 @@ $this->set([
 			</thead>
 			<tbody class="list">
 				<?php foreach ($data as $item): ?>
-					<?php $user = $item->user() ?>
 					<?php $type = $item->type() ?>
 				<tr data-id="<?= $item->id ?>">
 					<td class="token emphasize"><?= $item->token ?>
 					<td class="type"><?= $type->title() ?>
-					<td class="user">
-						<?php if ($user): ?>
-							<?= $this->html->link($user->number, [
-								'controller' => $user->isVirtual() ? 'VirtualUsers' : 'Users',
-								'action' => 'edit', 'id' => $user->id,
-								'library' => 'cms_core'
-							]) ?>
-						<?php else: ?>
-							-
-						<?php endif ?>
 					<td class="date created">
 						<time datetime="<?= $this->date->format($item->created, 'w3c') ?>">
 							<?= $this->date->format($item->created, 'date') ?>
