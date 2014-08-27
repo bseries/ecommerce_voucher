@@ -28,6 +28,25 @@ class Vouchers extends \cms_core\models\Base {
 		return strtotime(Settings::read('checkout.expire'), $date->getTimestamp()) < time();
 	}
 	 */
+
+	public static function generateToken() {
+		$length = 8;
+		$chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ2345679';
+		$token = '';
+
+		while (strlen($token) < $length) {
+			$token .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
+		}
+		return $token;
+	}
 }
+
+Vouchers::applyFilter('create', function($self, $params, $chain) {
+	if (empty($params['data']['token'])) {
+		$params['data']['token'] = Vouchers::generateToken();
+	}
+	return $chain->next($self, $params, $chain);
+});
+
 
 ?>

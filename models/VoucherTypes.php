@@ -39,7 +39,7 @@ class VoucherTypes extends \cms_core\models\Base {
 		static::$_data[$name] = static::create($data);
 	}
 
-	public static function find($type, array $options = array()) {
+	public static function find($type, array $options = []) {
 		if ($type == 'all') {
 			return new Collection(['data' => static::$_data]);
 		} elseif ($type == 'first') {
@@ -52,6 +52,10 @@ class VoucherTypes extends \cms_core\models\Base {
 			}
 			return $results;
 		}
+	}
+
+	public function title($entity) {
+		return $entity->title;
 	}
 
 	public function hasAccess($entity, $user) {

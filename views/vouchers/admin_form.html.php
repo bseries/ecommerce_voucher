@@ -1,45 +1,71 @@
 <?php
 
-$untitled = $t('Untitled');
-
-$title = [
-	'action' => ucfirst($this->_request->action === 'add' ? $t('creating') : $t('editing')),
-	'title' => $item->number ?: $untitled,
-	'object' => [ucfirst($t('order')), ucfirst($t('orders'))]
-];
-$this->title("{$title['title']} - {$title['object'][1]}");
+$this->set([
+	'page' => [
+		'type' => 'single',
+		'title' => $item->token,
+		'empty' => false,
+		'object' => $t('voucher')
+	]
+]);
 
 ?>
-<article class="view-<?= $this->_config['controller'] . '-' . $this->_config['template'] ?> section-spacing">
-	<h1 class="alpha">
-		<span class="action"><?= $title['action'] ?></span>
-		<span class="title" data-untitled="<?= $untitled ?>"><?= $title['title'] ?></span>
-	</h1>
-
+<article class="view-<?= $this->_config['controller'] . '-' . $this->_config['template'] ?>">
 	<?=$this->form->create($item) ?>
-		<?= $this->form->field('number', [
-			'type' => 'text',
-			'label' => $t('Number'),
-			'disabled' => true,
-			'class' => 'use-for-title'
-		]) ?>
-		<div class="help"><?= $t('The order number is automatically generated.') ?></div>
-
-		<?= $this->form->field('billing_invoice_id', [
-			'type' => 'select',
-			'label' => $t('Invoice number'),
-			'disabled' => $item->exists(),
-			'list' => $invoices
+		<?= $this->form->field('id', [
+			'type' => 'hidden'
 		]) ?>
 
-		<?= $this->form->field('ecommerce_shipment_id', [
-			'type' => 'select',
-			'label' => $t('Shipment'),
-			'disabled' => $item->exists(),
-			'list' => $shipments
-		]) ?>
+		<div class="grid-row">
+			<div class="grid-column-left">
+				<div class="compound-users">
+					<?php
+						$user = $item->exists() ? $item->user() : false;
+					?>
+					<?= $this->form->field('user_id', [
+						'type' => 'select',
+						'label' => $t('User'),
+						'list' => $users,
+						'class' => !$user || !$user->isVirtual() ? null : 'hide'
+					]) ?>
+					<?= $this->form->field('virtual_user_id', [
+						'type' => 'select',
+						'label' => false,
+						'list' => $virtualUsers,
+						'class' => $user && $user->isVirtual() ? null : 'hide'
+					]) ?>
+					<?= $this->form->field('user.is_real', [
+						'type' => 'checkbox',
+						'label' => $t('real user'),
+						'checked' => $user ? !$user->isVirtual() : true
+					]) ?>
+				</div>
+			</div>
+		</div>
 
-		<?= $this->form->button($t('save'), ['type' => 'submit', 'class' => 'button large']) ?>
+		<div class="grid-row grid-row-last">
+			<div class="grid-column-left">
+				<?= $this->form->field('token', [
+					'type' => 'text',
+					'label' => $t('Code')
+				]) ?>
+				<?= $this->form->field('type', [
+					'type' => 'select',
+					'label' => $t('Type'),
+					'list' => $types
+				]) ?>
+			</div>
+			<div class="grid-column-right">
+				<?= $this->form->field('created', [
+					'label' => $t('Created'),
+					'disabled' => true,
+					'value' => $item->exists() ? $this->date->format($item->created, 'datetime') : null
+				]) ?>
+			</div>
+		</div>
 
+		<div class="bottom-actions">
+			<?= $this->form->button($t('save'), ['type' => 'submit', 'class' => 'button large save']) ?>
+		</div>
 	<?=$this->form->end() ?>
 </article>

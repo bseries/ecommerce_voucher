@@ -3,21 +3,24 @@
 $this->set([
 	'page' => [
 		'type' => 'multiple',
-		'object' => $t('carts')
+		'object' => $t('vouchers')
 	]
 ]);
 
 ?>
 <article class="view-<?= $this->_config['controller'] . '-' . $this->_config['template'] ?> use-list">
+
+	<div class="top-actions">
+		<?= $this->html->link($t('new voucher'), ['action' => 'add', 'library' => 'ecommerce_voucher'], ['class' => 'button add']) ?>
+	</div>
+
 	<?php if ($data->count()): ?>
 		<table>
 			<thead>
 				<tr>
-					<td data-sort="status" class="status list-sort"><?= $t('Status') ?>
-					<td data-sort="order" class="order list-sort"><?= $t('Order') ?>
+					<td data-sort="token" class="token emphasize list-sort"><?= $t('Code') ?>
+					<td data-sort="type" class="type list-sort"><?= $t('Type') ?>
 					<td data-sort="user" class="user list-sort"><?= $t('User') ?>
-					<td data-sort="total-amount" class="total-amount list-sort"><?= $t('Total amount (net) ') ?>
-					<td data-sort="total-quantity" class="total-quantity list-sort"><?= $t('Total quantity') ?>
 					<td data-sort="created" class="date created list-sort desc"><?= $t('Created') ?>
 					<td class="actions">
 						<?= $this->form->field('search', [
@@ -29,45 +32,27 @@ $this->set([
 			</thead>
 			<tbody class="list">
 				<?php foreach ($data as $item): ?>
-					<?php $order = $item->order() ?>
-					<?php $user = $order ? $order->user() : null?>
-					<?php $taxZone = $user ? $user->taxZone() : null ?>
+					<?php $user = $item->user() ?>
+					<?php $type = $item->type() ?>
 				<tr data-id="<?= $item->id ?>">
-					<td class="status"><?= $statuses[$item->status] ?>
-					<td class="order">
-					<?php if ($order): ?>
-						<?= $this->html->link($order->number, [
-							'controller' => 'Orders', 'action' => 'edit', 'id' => $order->id,
-							'library' => 'ecommerce_voucher'
-						]) ?>
-					<?php else: ?>
-						-
-					<?php endif ?>
+					<td class="token emphasize"><?= $item->token ?>
+					<td class="type"><?= $type->title() ?>
 					<td class="user">
-					<?php if ($user): ?>
-						<?= $this->html->link($user->number, [
-							'controller' => $user->isVirtual() ? 'VirtualUsers' : 'Users',
-							'action' => 'edit', 'id' => $user->id,
-							'library' => 'cms_core'
-						]) ?>
-					<?php else: ?>
-						–
-					<?php endif ?>
-					<td class="total-amount">
-					<?php if ($user): ?>
-						<?= $this->money->format($item->totalAmount($user, $user->taxZone())->getNet(), 'money') ?: '–' ?>
-					<?php else: ?>
-						–
-					<?php endif ?>
-					<td class="total-quantity"><?= $item->totalQuantity() ?>
+						<?php if ($user): ?>
+							<?= $this->html->link($user->number, [
+								'controller' => $user->isVirtual() ? 'VirtualUsers' : 'Users',
+								'action' => 'edit', 'id' => $user->id,
+								'library' => 'cms_core'
+							]) ?>
+						<?php else: ?>
+							-
+						<?php endif ?>
 					<td class="date created">
 						<time datetime="<?= $this->date->format($item->created, 'w3c') ?>">
 							<?= $this->date->format($item->created, 'date') ?>
 						</time>
 					<td class="actions">
-						<?php if (!$order && $item->status !== 'cancelled'): ?>
-							<?= $this->html->link($t('cancel'), ['id' => $item->id, 'action' => 'cancel', 'library' => 'ecommerce_voucher'], ['class' => 'button']) ?>
-						<?php endif ?>
+						<?= $this->html->link($t('open'), ['id' => $item->id, 'action' => 'edit', 'library' => 'ecommerce_voucher'], ['class' => 'button']) ?>
 				<?php endforeach ?>
 			</tbody>
 		</table>
