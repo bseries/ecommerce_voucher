@@ -37,7 +37,7 @@ class VoucherCodes extends \cms_core\models\Base {
 }
 
 VoucherCodes::applyFilter('create', function($self, $params, $chain) {
-	if (empty($params['data']['code'])) {
+	if ($params['options']['defaults'] && empty($params['data']['code'])) {
 		$params['data']['code'] = VoucherCodes::generateCode();
 	}
 	return $chain->next($self, $params, $chain);

@@ -3,7 +3,7 @@
 $this->set([
 	'page' => [
 		'type' => 'single',
-		'title' => $item->token,
+		'title' => $item->code,
 		'empty' => false,
 		'object' => $t('voucher')
 	]
