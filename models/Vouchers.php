@@ -12,41 +12,57 @@
 
 namespace ecommerce_voucher\models;
 
+// use billing_core\extensions\financial\Price;
+use lithium\util\Collection;
+use li3_access\security\Access;
+
 class Vouchers extends \cms_core\models\Base {
 
 	protected $_meta = [
-		'source' => 'ecommerce_vouchers'
+		'connection' => false
 	];
 
-	protected static $_actsAs = [
-		'cms_core\extensions\data\behavior\Timestamp'
-	];
+	protected static $_data = [];
 
-	/*
-	public function isExpired($entity) {
-		$date = DateTime::createFromFormat('Y-m-d H:i:s', $entity->modified);
-		return strtotime(Settings::read('checkout.expire'), $date->getTimestamp()) < time();
+	public static function register($name, array $data) {
+		$data += [
+			'id' => $name,
+			'name' => $name,
+			'title' => null,
+			'access' => ['user.role:admin'],
+			'delegate' => false,
+			'price' => function($user, $cart, $taxZone) {
+				return new Price(0, 'EUR', 'net', $taxZone);
+			}
+		];
+		$data['access'] = (array) $data['access'];
+		static::$_data[$name] = static::create($data);
 	}
-	 */
 
-	public static function generateToken() {
-		$length = 8;
-		$chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ2345679';
-		$token = '';
+	public static function find($type, array $options = []) {
+		if ($type == 'all') {
+			return new Collection(['data' => static::$_data]);
+		} elseif ($type == 'first') {
+			return static::$_data[$options['conditions']['id']];
+		} elseif ($type == 'list') {
+			$results = [];
 
-		while (strlen($token) < $length) {
-			$token .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
+			foreach (static::$_data as $item) {
+				$results[$item->id] = $item->title();
+			}
+			return $results;
 		}
-		return $token;
+	}
+
+	public function title($entity) {
+		return $entity->title;
+	}
+
+	public function hasAccess($entity, $user) {
+		return Access::check('entity', $user, ['request' => $entity], [
+			'rules' => $entity->data('access')
+		]) === [];
 	}
 }
-
-Vouchers::applyFilter('create', function($self, $params, $chain) {
-	if (empty($params['data']['token'])) {
-		$params['data']['token'] = Vouchers::generateToken();
-	}
-	return $chain->next($self, $params, $chain);
-});
-
 
 ?>

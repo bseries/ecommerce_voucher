@@ -18,7 +18,7 @@ $this->set([
 		<table>
 			<thead>
 				<tr>
-					<td data-sort="token" class="token emphasize list-sort"><?= $t('Code') ?>
+					<td data-sort="code" class="code emphasize list-sort"><?= $t('Code') ?>
 					<td data-sort="type" class="type list-sort"><?= $t('Type') ?>
 					<td data-sort="created" class="date created list-sort desc"><?= $t('Created') ?>
 					<td class="actions">
@@ -33,7 +33,7 @@ $this->set([
 				<?php foreach ($data as $item): ?>
 					<?php $type = $item->type() ?>
 				<tr data-id="<?= $item->id ?>">
-					<td class="token emphasize"><?= $item->token ?>
+					<td class="code emphasize"><?= $item->code ?>
 					<td class="type"><?= $type->title() ?>
 					<td class="date created">
 						<time datetime="<?= $this->date->format($item->created, 'w3c') ?>">

@@ -18,7 +18,7 @@ $this->set([
 
 		<div class="grid-row grid-row-last">
 			<div class="grid-column-left">
-				<?= $this->form->field('token', [
+				<?= $this->form->field('code', [
 					'type' => 'text',
 					'label' => $t('Code')
 				]) ?>

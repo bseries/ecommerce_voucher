@@ -18,7 +18,7 @@ extract(Message::aliases());
 $base = ['controller' => 'ecommerce', 'library' => 'ecommerce_voucher', 'admin' => true];
 Panes::register('ecommerce.vouchers', [
 	'title' => $t('Vouchers'),
-	'url' => ['controller' => 'Vouchers', 'action' => 'index'] + $base
+	'url' => ['controller' => 'VoucherCodes', 'action' => 'index'] + $base
 ]);
 
 ?>
