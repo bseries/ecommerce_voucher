@@ -18,14 +18,14 @@ use ecommerce_voucher\models\VoucherCodes;
 use ecommerce_voucher\models\Vouchers;
 use li3_access\security\Access;
 
-class VoucherCodessController extends \cms_core\controllers\BaseController {
+class VoucherCodesController extends \cms_core\controllers\BaseController {
 
 	use \cms_core\controllers\AdminAddTrait;
 	use \cms_core\controllers\AdminEditTrait;
 	use \cms_core\controllers\AdminDeleteTrait;
 
 	public function admin_index() {
-		$data = VoucherCodess::find('all', [
+		$data = VoucherCodes::find('all', [
 			'order' => ['created' => 'desc']
 		]);
 		return compact('data') + $this->_selects();
