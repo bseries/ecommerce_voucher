@@ -20,6 +20,7 @@ $this->set([
 				<tr>
 					<td data-sort="code" class="code emphasize list-sort"><?= $t('Code') ?>
 					<td data-sort="type" class="type list-sort"><?= $t('Type') ?>
+					<td data-sort="uses-left" class="uses-left list-sort"><?= $t('Uses Left') ?>
 					<td data-sort="created" class="date created list-sort desc"><?= $t('Created') ?>
 					<td class="actions">
 						<?= $this->form->field('search', [
@@ -35,6 +36,7 @@ $this->set([
 				<tr data-id="<?= $item->id ?>">
 					<td class="code emphasize"><?= $item->code ?>
 					<td class="type"><?= $type->title() ?>
+					<td class="uses-left"><?= $item->uses_left ?: '–' ?>
 					<td class="date created">
 						<time datetime="<?= $this->date->format($item->created, 'w3c') ?>">
 							<?= $this->date->format($item->created, 'date') ?>

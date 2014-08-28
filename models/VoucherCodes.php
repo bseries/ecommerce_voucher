@@ -31,6 +31,12 @@ class VoucherCodes extends \cms_core\models\Base {
 	}
 	 */
 
+	public function type($entity) {
+		return Vouchers::find('first', [
+			'conditions' => ['id' => $entity->type]
+		]);
+	}
+
 	public static function generateCode() {
 		return (new CouponCode(['parts' => 3, 'partLength' => 4]))->generate();
 	}
