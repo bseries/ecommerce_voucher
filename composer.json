@@ -15,7 +15,8 @@
         "atelierdisko/base_core": "1.2.*",
         "unionofrad/lithium": "dev-dev",
         "composer/installers": "~1.0",
-        "atelierdisko/coupon_code": "1.*"
+        "atelierdisko/coupon_code": "1.*",
+        "tmaiaroto/li3_access": "dev-master"
     },
     "repositories": [
       { "type": "vcs", "url": "https://github.com/uor/li3_flash_message" },
