@@ -1,6 +1,6 @@
 <?php
 /**
- * Boutique Voucher
+ * eCommerce Voucher
  *
  * Copyright (c) 2014 Atelier Disko - All rights reserved.
  *

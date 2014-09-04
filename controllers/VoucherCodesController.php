@@ -1,6 +1,6 @@
 <?php
 /**
- * Boutique Voucher
+ * eCommerce Voucher
  *
  * Copyright (c) 2014 Atelier Disko - All rights reserved.
  *
@@ -18,11 +18,11 @@ use ecommerce_voucher\models\VoucherCodes;
 use ecommerce_voucher\models\Vouchers;
 use li3_access\security\Access;
 
-class VoucherCodesController extends \cms_core\controllers\BaseController {
+class VoucherCodesController extends \base_core\controllers\BaseController {
 
-	use \cms_core\controllers\AdminAddTrait;
-	use \cms_core\controllers\AdminEditTrait;
-	use \cms_core\controllers\AdminDeleteTrait;
+	use \base_core\controllers\AdminAddTrait;
+	use \base_core\controllers\AdminEditTrait;
+	use \base_core\controllers\AdminDeleteTrait;
 
 	public function admin_index() {
 		$data = VoucherCodes::find('all', [

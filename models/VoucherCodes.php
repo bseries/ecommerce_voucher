@@ -1,6 +1,6 @@
 <?php
 /**
- * Boutique Voucher
+ * eCommerce Voucher
  *
  * Copyright (c) 2014 Atelier Disko - All rights reserved.
  *
@@ -14,14 +14,14 @@ namespace ecommerce_voucher\models;
 
 use CouponCode\CouponCode;
 
-class VoucherCodes extends \cms_core\models\Base {
+class VoucherCodes extends \base_core\models\Base {
 
 	protected $_meta = [
 		'source' => 'ecommerce_voucher_codes'
 	];
 
 	protected static $_actsAs = [
-		'cms_core\extensions\data\behavior\Timestamp'
+		'base_core\extensions\data\behavior\Timestamp'
 	];
 
 	/*

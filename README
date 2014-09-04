@@ -1,5 +1,5 @@
-BOUTIQUE Voucher
--- Voucher functionality for boutique.
+eCommerce Voucher
+-- Voucher functionality for Boutique.
 
 Synopsis
 --------
@@ -11,7 +11,7 @@ David M. Persson for Atelier Disko (david@atelierdisko.de).
 
 Copyright & License
 -------------------
-Boutique Voucher is Copyright (c) 2014 Atelier Disko - All rights reserved.
+This library is Copyright (c) 2014 Atelier Disko - All rights reserved.
 
 -- This software is proprietary and confidential. Redistributions   --
 -- not permitted. Unless required by applicable law or agreed to    --

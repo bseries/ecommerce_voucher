@@ -1,6 +1,6 @@
 <?php
 /**
- * Boutique Voucher
+ * eCommerce Voucher
  *
  * Copyright (c) 2014 Atelier Disko - All rights reserved.
  *
@@ -16,7 +16,7 @@ namespace ecommerce_voucher\models;
 use lithium\util\Collection;
 use li3_access\security\Access;
 
-class Vouchers extends \cms_core\models\Base {
+class Vouchers extends \base_core\models\Base {
 
 	protected $_meta = [
 		'connection' => false
