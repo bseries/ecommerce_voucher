@@ -15,10 +15,9 @@ use lithium\g11n\Message;
 
 extract(Message::aliases());
 
-$base = ['controller' => 'ecommerce', 'library' => 'ecommerce_voucher', 'admin' => true];
 Panes::register('ecommerce.vouchers', [
 	'title' => $t('Vouchers'),
-	'url' => ['controller' => 'VoucherCodes', 'action' => 'index'] + $base
+	'url' => ['controller' => 'Vouchers', 'action' => 'index', 'library' => 'ecommerce_voucher', 'admin' => true]
 ]);
 
 ?>

@@ -12,57 +12,55 @@
 
 namespace ecommerce_voucher\models;
 
-// use billing_core\extensions\financial\Price;
-use lithium\util\Collection;
-use li3_access\security\Access;
+use CouponCode\CouponCode;
 
 class Vouchers extends \base_core\models\Base {
 
 	protected $_meta = [
-		'connection' => false
+		'source' => 'ecommerce_voucher_codes'
 	];
 
-	protected static $_data = [];
+	protected static $_actsAs = [
+		'base_core\extensions\data\behavior\Timestamp'
+	];
 
-	public static function register($name, array $data) {
-		$data += [
-			'id' => $name,
-			'name' => $name,
-			'title' => null,
-			'access' => ['user.role:admin'],
-			'delegate' => false,
-			'price' => function($user, $cart, $taxZone) {
-				return new Price(0, 'EUR', 'net', $taxZone);
-			}
-		];
-		$data['access'] = (array) $data['access'];
-		static::$_data[$name] = static::create($data);
+	/*
+	public function isExpired($entity) {
+		$date = DateTime::createFromFormat('Y-m-d H:i:s', $entity->modified);
+		return strtotime(Settings::read('checkout.expire'), $date->getTimestamp()) < time();
 	}
+	 */
 
-	public static function find($type, array $options = []) {
-		if ($type == 'all') {
-			return new Collection(['data' => static::$_data]);
-		} elseif ($type == 'first') {
-			return static::$_data[$options['conditions']['id']];
-		} elseif ($type == 'list') {
-			$results = [];
+	public static function check($code) {
+		$coupon = new CouponCode(['parts' => 3, 'partLength' => 4]);
 
-			foreach (static::$_data as $item) {
-				$results[$item->id] = $item->title();
-			}
-			return $results;
+		if (!$coupon->validate($code)) {
+			return false;
 		}
+		return (boolean) static::find('count', [
+			'conditions' => [
+				'code' => $coupon->normalize($code)
+			]
+		]);
 	}
 
-	public function title($entity) {
-		return $entity->title;
+	public function type($entity) {
+		return Vouchers::find('first', [
+			'conditions' => ['id' => $entity->type]
+		]);
 	}
 
-	public function hasAccess($entity, $user) {
-		return Access::check('entity', $user, ['request' => $entity], [
-			'rules' => $entity->data('access')
-		]) === [];
+	public static function generateCode() {
+		return (new CouponCode(['parts' => 3, 'partLength' => 4]))->generate();
 	}
 }
+
+Vouchers::applyFilter('create', function($self, $params, $chain) {
+	if ($params['options']['defaults'] && empty($params['data']['code'])) {
+		$params['data']['code'] = Vouchers::generateCode();
+	}
+	return $chain->next($self, $params, $chain);
+});
+
 
 ?>

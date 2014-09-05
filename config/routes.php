@@ -15,16 +15,16 @@ use lithium\net\http\Router;
 $persist = ['persist' => ['admin', 'controller']];
 
 Router::connect('/admin/ecommerce/vouchers/{:id:[0-9]+}', [
-	'controller' => 'VoucherCodes', 'library' => 'ecommerce_voucher', 'action' => 'view', 'admin' => true
+	'controller' => 'Vouchers', 'library' => 'ecommerce_voucher', 'action' => 'view', 'admin' => true
 ], $persist);
 Router::connect('/admin/ecommerce/vouchers/{:action}', [
-	'controller' => 'VoucherCodes', 'library' => 'ecommerce_voucher', 'admin' => true
+	'controller' => 'Vouchers', 'library' => 'ecommerce_voucher', 'admin' => true
 ], $persist);
 Router::connect('/admin/ecommerce/vouchers/{:action}/{:id:[0-9]+}', [
-	'controller' => 'VoucherCodes', 'library' => 'ecommerce_voucher', 'admin' => true
+	'controller' => 'Vouchers', 'library' => 'ecommerce_voucher', 'admin' => true
 ], $persist);
 Router::connect('/admin/ecommerce/vouchers/{:id:[0-9]+}/status/{:status}', [
-	'controller' => 'VoucherCodes', 'action' => 'update_status', 'library' => 'ecommerce_voucher', 'admin' => true
+	'controller' => 'Vouchers', 'action' => 'update_status', 'library' => 'ecommerce_voucher', 'admin' => true
 ], $persist);
 
 ?>

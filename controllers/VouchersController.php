@@ -14,18 +14,18 @@ namespace ecommerce_voucher\controllers;
 
 use lithium\g11n\Message;
 use li3_flash_message\extensions\storage\FlashMessage;
-use ecommerce_voucher\models\VoucherCodes;
 use ecommerce_voucher\models\Vouchers;
+use ecommerce_voucher\models\VoucherTypes;
 use li3_access\security\Access;
 
-class VoucherCodesController extends \base_core\controllers\BaseController {
+class VouchersController extends \base_core\controllers\BaseController {
 
 	use \base_core\controllers\AdminAddTrait;
 	use \base_core\controllers\AdminEditTrait;
 	use \base_core\controllers\AdminDeleteTrait;
 
 	public function admin_index() {
-		$data = VoucherCodes::find('all', [
+		$data = Vouchers::find('all', [
 			'order' => ['created' => 'desc']
 		]);
 		return compact('data') + $this->_selects();
@@ -44,7 +44,7 @@ class VoucherCodesController extends \base_core\controllers\BaseController {
 			}
 			$rules[$item] = $item;
 		}
-		$types = Vouchers::find('list');
+		$types = VoucherTypes::find('list');
 
 		return compact('rules', 'types');
 	}
