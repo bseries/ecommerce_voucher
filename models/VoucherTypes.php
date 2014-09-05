@@ -32,7 +32,7 @@ class VoucherTypes extends \base_core\models\Base {
 			'info' => function($context, $format) {
 				// Dependent on $format return either HTML or plaintext.
 			},
-			'redeem' => function($voucher, $user) {
+			'redeem' => function($user) {
 				// Do sth. with cart or invoice.
 				// FIXME Pass in cart - if needed.
 			}
@@ -65,9 +65,9 @@ class VoucherTypes extends \base_core\models\Base {
 		return $handler($context, $format);
 	}
 
-	public function redeem($entity, $voucher, $user) {
+	public function redeem($entity, $user) {
 		$handler = $entity->data('redeem');
-		return $handler($voucher, $user);
+		return $handler($user);
 	}
 
 	public function hasAccess($entity, $user) {

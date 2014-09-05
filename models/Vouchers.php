@@ -65,7 +65,7 @@ class Vouchers extends \base_core\models\Base {
 			return false;
 		}
 		return $entity->save([
-			'uses_left' => $enitity->uses_left - 1
+			'uses_left' => $entity->uses_left - 1
 		], ['whitelist' => ['uses_left']]);
 	}
 }
