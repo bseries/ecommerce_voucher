@@ -13,11 +13,12 @@
 namespace ecommerce_voucher\models;
 
 use CouponCode\CouponCode;
+use ecommerce_voucher\models\VoucherTypes;
 
 class Vouchers extends \base_core\models\Base {
 
 	protected $_meta = [
-		'source' => 'ecommerce_voucher_codes'
+		'source' => 'ecommerce_vouchers'
 	];
 
 	protected static $_actsAs = [
@@ -44,14 +45,14 @@ class Vouchers extends \base_core\models\Base {
 		]);
 	}
 
-	public function type($entity) {
-		return Vouchers::find('first', [
-			'conditions' => ['id' => $entity->type]
-		]);
-	}
-
 	public static function generateCode() {
 		return (new CouponCode(['parts' => 3, 'partLength' => 4]))->generate();
+	}
+
+	public function type($entity) {
+		return VoucherTypes::find('first', [
+			'conditions' => ['id' => $entity->type]
+		]);
 	}
 }
 
