@@ -38,11 +38,12 @@ class Vouchers extends \base_core\models\Base {
 		if (!$coupon->validate($code)) {
 			return false;
 		}
-		return (boolean) static::find('count', [
+		$item = static::find('first', [
 			'conditions' => [
 				'code' => $coupon->normalize($code)
 			]
 		]);
+		return $item && $item->uses_left > 0;
 	}
 
 	public static function generateCode() {
@@ -53,6 +54,19 @@ class Vouchers extends \base_core\models\Base {
 		return VoucherTypes::find('first', [
 			'conditions' => ['id' => $entity->type]
 		]);
+	}
+
+	// Redeems this voucher. Assumes that one voucher redeem counts one "use".
+	public function redeem($entity, $user) {
+		if ($entity->uses_left < 1) {
+			return false;
+		}
+		if (!$entity->type()->redeem($user)) {
+			return false;
+		}
+		return $entity->save([
+			'uses_left' => $enitity->uses_left - 1
+		], ['whitelist' => ['uses_left']]);
 	}
 }
 
