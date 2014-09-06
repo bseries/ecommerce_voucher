@@ -17,7 +17,8 @@ extract(Message::aliases());
 
 Panes::register('ecommerce.vouchers', [
 	'title' => $t('Vouchers'),
-	'url' => ['controller' => 'Vouchers', 'action' => 'index', 'library' => 'ecommerce_voucher', 'admin' => true]
+	'url' => ['controller' => 'Vouchers', 'action' => 'index', 'library' => 'ecommerce_voucher', 'admin' => true],
+	'weight' => 50
 ]);
 
 ?>
