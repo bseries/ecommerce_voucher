@@ -16,7 +16,7 @@ $this->set([
 			'type' => 'hidden'
 		]) ?>
 
-		<div class="grid-row grid-row-last">
+		<div class="grid-row">
 			<div class="grid-column-left">
 				<?= $this->form->field('code', [
 					'type' => 'text',
