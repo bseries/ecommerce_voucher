@@ -28,6 +28,7 @@ class VoucherTypes extends \base_core\models\Base {
 			'id' => $name,
 			'name' => $name,
 			'title' => null,
+			'worth' => null,
 			'access' => ['user.role:admin'],
 			'info' => function($context, $format) {
 				// Dependent on $format return either HTML or plaintext.
