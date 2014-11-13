@@ -25,13 +25,6 @@ class Vouchers extends \base_core\models\Base {
 		'base_core\extensions\data\behavior\Timestamp'
 	];
 
-	/*
-	public function isExpired($entity) {
-		$date = DateTime::createFromFormat('Y-m-d H:i:s', $entity->modified);
-		return strtotime(Settings::read('checkout.expire'), $date->getTimestamp()) < time();
-	}
-	 */
-
 	public static function check($code) {
 		$coupon = new CouponCode(['parts' => 3, 'partLength' => 4]);
 
