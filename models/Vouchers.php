@@ -28,9 +28,9 @@ class Vouchers extends \base_core\models\Base {
 	public static function check($code) {
 		$coupon = new CouponCode(['parts' => 3, 'partLength' => 4]);
 
-		// if (!$coupon->validate($code)) {
-		//	return false;
-		// }
+		if (!$coupon->validate($code)) {
+			return false;
+		}
 		$item = static::find('first', [
 			'conditions' => [
 				'code' => $coupon->normalize($code)
