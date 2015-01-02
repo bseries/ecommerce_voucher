@@ -16,7 +16,7 @@
         "atelierdisko/ecommerce_core": "1.2.*",
         "unionofrad/lithium": "dev-dev",
         "composer/installers": "~1.0",
-        "atelierdisko/coupon_code": "dev-master",
+        "atelierdisko/coupon_code": "1.0.0-beta",
         "tmaiaroto/li3_access": "dev-master"
     },
     "repositories": [
