@@ -14,6 +14,8 @@ namespace ecommerce_voucher\models;
 
 use lithium\util\Collection;
 use li3_access\security\Access;
+use lithium\core\Environment;
+use NumberFormatter;
 
 class VoucherTypes extends \base_core\models\Base {
 
@@ -49,9 +51,18 @@ class VoucherTypes extends \base_core\models\Base {
 			return static::$_data[$options['conditions']['id']];
 		} elseif ($type == 'list') {
 			$results = [];
+			$formatter = new NumberFormatter(
+				Environment::get('locale'), NumberFormatter::CURRENCY
+			);
 
 			foreach (static::$_data as $item) {
-				$results[$item->id] = $item->title();
+				$results[$item->id] = sprintf('%s (%s)',
+					$item->title(),
+					$formatter->formatCurrency(
+						$item->worth->getAmount() / 100,
+						$item->worth->getCurrency()
+					)
+				);
 			}
 			return $results;
 		}
