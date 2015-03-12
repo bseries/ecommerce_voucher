@@ -10,15 +10,13 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  */
 
-use base_core\extensions\cms\Panes;
-use lithium\g11n\Message;
+use lithium\g11n\Catalog;
 
-extract(Message::aliases());
-
-Panes::register('ecommerce.vouchers', [
-	'title' => $t('Vouchers', ['scope' => 'ecommerce_voucher']),
-	'url' => ['controller' => 'Vouchers', 'action' => 'index', 'library' => 'ecommerce_voucher', 'admin' => true],
-	'weight' => 50
-]);
+Catalog::config([
+	basename(dirname(__DIR__)) => [
+		'adapter' => 'Gettext',
+		'path' => dirname(__DIR__) . '/resources/g11n/po'
+	 ]
+] + Catalog::config());
 
 ?>

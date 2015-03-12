@@ -1,5 +1,11 @@
 <?php
 
+use lithium\g11n\Message;
+
+$t = function($message, array $options = []) {
+	return Message::translate($message, $options + ['scope' => 'ecommerce_voucher', 'default' => $message]);
+};
+
 $this->set([
 	'page' => [
 		'type' => 'multiple',
@@ -8,7 +14,15 @@ $this->set([
 ]);
 
 ?>
-<article class="view-<?= $this->_config['controller'] . '-' . $this->_config['template'] ?> use-list">
+<article
+	class="use-index-table"
+	data-endpoint-sort="<?= $this->url([
+		'action' => 'index',
+		'page' => $paginator->getPages()->current,
+		'orderField' => '__ORDER_FIELD__',
+		'orderDirection' => '__ORDER_DIRECTION__'
+	]) ?>"
+>
 
 	<div class="top-actions">
 		<?= $this->html->link($t('new voucher'), ['action' => 'add', 'library' => 'ecommerce_voucher'], ['class' => 'button add']) ?>
@@ -18,18 +32,12 @@ $this->set([
 		<table>
 			<thead>
 				<tr>
-					<td data-sort="code" class="code emphasize list-sort"><?= $t('Code') ?>
-					<td data-sort="type" class="type list-sort"><?= $t('Type') ?>
-					<td data-sort="uses-left" class="uses-left list-sort"><?= $t('Uses Left') ?>
-					<td data-sort="created" class="date created list-sort desc"><?= $t('Created') ?>
+					<td data-sort="code" class="code emphasize table-sort"><?= $t('Code') ?>
+					<td data-sort="type" class="type table-sort"><?= $t('Type') ?>
+					<td data-sort="uses-left" class="uses-left table-sort"><?= $t('Uses Left') ?>
+					<td data-sort="modified" class="date modified table-sort desc"><?= $t('Modified') ?>
 					<td class="actions">
-						<?= $this->form->field('search', [
-							'type' => 'search',
-							'label' => false,
-							'placeholder' => $t('Filter'),
-							'class' => 'list-search'
-						]) ?>
-			</thead>
+				</thead>
 			<tbody class="list">
 				<?php foreach ($data as $item): ?>
 					<?php $type = $item->type() ?>
@@ -37,9 +45,9 @@ $this->set([
 					<td class="code emphasize"><?= $item->code ?>
 					<td class="type"><?= $type->title() ?>
 					<td class="uses-left"><?= $item->uses_left ?: '–' ?>
-					<td class="date created">
-						<time datetime="<?= $this->date->format($item->created, 'w3c') ?>">
-							<?= $this->date->format($item->created, 'date') ?>
+					<td class="date modified">
+						<time datetime="<?= $this->date->format($item->modified, 'w3c') ?>">
+							<?= $this->date->format($item->modified, 'date') ?>
 						</time>
 					<td class="actions">
 						<?= $this->html->link($t('open'), ['id' => $item->id, 'action' => 'edit', 'library' => 'ecommerce_voucher'], ['class' => 'button']) ?>
@@ -49,4 +57,6 @@ $this->set([
 	<?php else: ?>
 		<div class="none-available"><?= $t('No items available, yet.') ?></div>
 	<?php endif ?>
+
+	<?=$this->view()->render(['element' => 'paging'], compact('paginator'), ['library' => 'base_core']) ?>
 </article>
