@@ -22,7 +22,7 @@ class Vouchers extends \base_core\models\Base {
 	];
 
 	protected static $_actsAs = [
-		'base_core\extensions\data\behavior\Timestamp'
+		'base_core\extensions\data\behavior\Timestamp',
 		'base_core\extensions\data\behavior\Searchable' => [
 			'fields' => [
 				'code',
