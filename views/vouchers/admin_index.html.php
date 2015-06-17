@@ -26,7 +26,7 @@ $this->set([
 >
 
 	<div class="top-actions">
-		<?= $this->html->link($t('new voucher'), ['action' => 'add', 'library' => 'ecommerce_voucher'], ['class' => 'button add']) ?>
+		<?= $this->html->link($t('voucher'), ['action' => 'add', 'library' => 'ecommerce_voucher'], ['class' => 'button add']) ?>
 	</div>
 
 	<?php if ($data->count()): ?>
