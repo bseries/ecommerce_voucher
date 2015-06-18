@@ -21,6 +21,10 @@ class VoucherTypes extends \base_core\models\Base {
 		'connection' => false
 	];
 
+	protected static $_actsAs = [
+		'base_core\extensions\data\behavior\Access'
+	];
+
 	protected static $_data = [];
 
 	public static function register($name, array $data) {
@@ -69,12 +73,6 @@ class VoucherTypes extends \base_core\models\Base {
 	public function redeem($entity, $user) {
 		$handler = $entity->data('redeem');
 		return $handler($user);
-	}
-
-	public function hasAccess($entity, $user) {
-		return Access::check('entity', $user, ['request' => $entity], [
-			'rules' => $entity->data('access')
-		]) === [];
 	}
 }
 
