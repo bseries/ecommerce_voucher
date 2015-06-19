@@ -13,7 +13,6 @@
 namespace ecommerce_voucher\models;
 
 use lithium\util\Collection;
-use li3_access\security\Access;
 
 class VoucherTypes extends \base_core\models\Base {
 
