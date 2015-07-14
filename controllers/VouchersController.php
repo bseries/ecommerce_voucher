@@ -23,16 +23,10 @@ class VouchersController extends \base_core\controllers\BaseController {
 	use \base_core\controllers\AdminDeleteTrait;
 
 	protected function _selects($item = null) {
-		$data = array_keys(Access::adapter('entity')->get());
-		$skip = ['allowAll', 'denyAll', 'allowAnyUser', 'allowIp'];
-		$rules = [];
-
-		foreach ($data as $item) {
-			if (in_array($item, $skip)) {
-				continue;
-			}
-			$rules[$item] = $item;
-		}
+		$rules = array_combine(
+			$keys = array_keys(Access::adapter('entity')->get()),
+			$keys
+		);
 		$types = VoucherTypes::find('list');
 
 		return compact('rules', 'types');
