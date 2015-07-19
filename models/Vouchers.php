@@ -21,7 +21,7 @@ class Vouchers extends \base_core\models\Base {
 		'source' => 'ecommerce_vouchers'
 	];
 
-	public $actsAs = [
+	protected $_actsAs = [
 		'base_core\extensions\data\behavior\Timestamp',
 		'base_core\extensions\data\behavior\Searchable' => [
 			'fields' => [
