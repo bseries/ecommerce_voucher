@@ -14,8 +14,8 @@
         "atelierdisko/ecommerce_core": "1.3.*",
         "unionofrad/lithium": "1.0.*@dev",
         "composer/installers": "1.*@stable",
-        "atelierdisko/coupon_code": "1.0.*@stable",
-        "atelierdisko/li3_access": "1.0.*@beta"
+        "atelierdisko/coupon_code": "1.0.*",
+        "atelierdisko/li3_access": "1.0.*"
     },
     "repositories": [
       { "type": "vcs", "url": "git@code.atelierdisko.de:base_core.git" },
