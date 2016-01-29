@@ -17,7 +17,7 @@
 
 namespace ecommerce_voucher\controllers;
 
-use ecommerce_voucher\models\VoucherTypes;
+use ecommerce_voucher\ecommerce\voucher\Types as VoucherTypes;
 use li3_access\security\Access;
 
 class VouchersController extends \base_core\controllers\BaseController {
@@ -32,7 +32,7 @@ class VouchersController extends \base_core\controllers\BaseController {
 			$keys = array_keys(Access::adapter('entity')->get()),
 			$keys
 		);
-		$types = VoucherTypes::find('list');
+		$types = VoucherTypes::enum();
 
 		return compact('rules', 'types');
 	}

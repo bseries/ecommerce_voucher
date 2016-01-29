@@ -18,7 +18,7 @@
 namespace ecommerce_voucher\models;
 
 use CouponCode\CouponCode;
-use ecommerce_voucher\models\VoucherTypes;
+use ecommerce_voucher\ecommerce\voucher\Types as VoucherTypes;
 
 class Vouchers extends \base_core\models\Base {
 
@@ -56,9 +56,7 @@ class Vouchers extends \base_core\models\Base {
 	}
 
 	public function type($entity) {
-		return VoucherTypes::find('first', [
-			'conditions' => ['id' => $entity->type]
-		]);
+		return VoucherTypes::registry($entity->type);
 	}
 
 	// Redeems this voucher. Assumes that one voucher redeem counts one "use".
