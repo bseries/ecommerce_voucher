@@ -48,10 +48,9 @@ $this->set([
 				</thead>
 			<tbody class="list">
 				<?php foreach ($data as $item): ?>
-					<?php $type = $item->type() ?>
 				<tr data-id="<?= $item->id ?>">
 					<td class="code emphasize"><?= $item->code ?>
-					<td class="type"><?= $type->title() ?>
+					<td class="type"><?= $item->type()->title() ?>
 					<td class="uses-left"><?= $item->uses_left ?: '–' ?>
 					<td class="date modified">
 						<time datetime="<?= $this->date->format($item->modified, 'w3c') ?>">

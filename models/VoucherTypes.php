@@ -32,6 +32,8 @@ class VoucherTypes extends \base_core\models\Base {
 	protected static $_data = [];
 
 	public static function register($name, array $data) {
+		trigger_error('Deprecated in favor of ecommerce\voucher\Types.', E_USER_DEPRECATED);
+
 		$data += [
 			'id' => $name,
 			'name' => $name,
@@ -51,6 +53,8 @@ class VoucherTypes extends \base_core\models\Base {
 	}
 
 	public static function find($type, array $options = []) {
+		trigger_error('Deprecated in favor of ecommerce\voucher\Types.', E_USER_DEPRECATED);
+
 		if ($type == 'all') {
 			return new Collection(['data' => static::$_data]);
 		} elseif ($type == 'first') {
@@ -66,15 +70,18 @@ class VoucherTypes extends \base_core\models\Base {
 	}
 
 	public function title($entity) {
+		trigger_error('Deprecated in favor of ecommerce\voucher\Types.', E_USER_DEPRECATED);
 		return $entity->title;
 	}
 
 	public function info($entity, $context, $format) {
+		trigger_error('Deprecated in favor of ecommerce\voucher\Types.', E_USER_DEPRECATED);
 		$handler = $entity->data('info');
 		return $handler($context, $format);
 	}
 
 	public function redeem($entity, $user) {
+		trigger_error('Deprecated in favor of ecommerce\voucher\Types.', E_USER_DEPRECATED);
 		$handler = $entity->data('redeem');
 		return $handler($user);
 	}
