@@ -70,7 +70,7 @@ class Type {
 		return is_callable($value = $this->_config[__FUNCTION__]) ? $value() : $value;
 	}
 
-	public function info($entity, $context, $format, $renderer, $order) {
+	public function info($context, $format, $renderer, $order) {
 		return is_callable($value = $this->_config[__FUNCTION__]) ? $value($context, $format, $renderer, $order) : $value;
 	}
 
