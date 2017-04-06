@@ -17,7 +17,7 @@
         "unionofrad/lithium": "1.1.*@dev",
         "composer/installers": "1.*",
         "atelierdisko/coupon_code": "1.0.*",
-        "atelierdisko/li3_access": "2.0.*"
+        "atelierdisko/li3_access": "2.*@stable || 2.1.0@dev"
     },
     "repositories": [
       { "type": "vcs", "url": "git@code.atelierdisko.de:base_core.git" },
