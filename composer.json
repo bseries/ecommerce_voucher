@@ -20,7 +20,7 @@
         "atelierdisko/li3_access": "2.*@stable || 2.1.0@dev"
     },
     "repositories": [
-      { "type": "vcs", "url": "git@code.atelierdisko.de:base_core.git" },
-      { "type": "vcs", "url": "git@code.atelierdisko.de:ecommerce_core.git" }
+      { "type": "vcs", "url": "git@code.disko.io:base_core.git" },
+      { "type": "vcs", "url": "git@code.disko.io:ecommerce_core.git" }
    ]
 }
