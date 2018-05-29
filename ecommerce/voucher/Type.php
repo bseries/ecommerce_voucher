@@ -30,6 +30,8 @@ class Type {
 			$config['access'] = (array) $config['access'];
 		}
 		return $this->_config = $config + [
+			'name' => null,
+
 			// The (display) title, can also be an anonymous function.
 			'title' => null,
 
