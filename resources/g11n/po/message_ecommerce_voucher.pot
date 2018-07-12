@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Atelier Disko
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the ecommerce_voucher package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ecommerce_voucher 1.0\n"
 "Report-Msgid-Bugs-To: info@atelierdisko.de\n"
-"POT-Creation-Date: 2015-03-12 18:29+0100\n"
+"POT-Creation-Date: 2018-07-12 12:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,21 +17,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: config/panes.php:19
+#: config/panes.php:24
 msgid "Vouchers"
 msgstr ""
 
-#: views/vouchers/admin_form.html.php:14
+#: views/vouchers/admin_form.html.php:14 views/vouchers/admin_index.html.php:29
 msgid "voucher"
 msgstr ""
 
-#: views/vouchers/admin_form.html.php:29
-#: views/vouchers/admin_index.html.php:35
+#: views/vouchers/admin_form.html.php:29 views/vouchers/admin_index.html.php:36
 msgid "Code"
 msgstr ""
 
-#: views/vouchers/admin_form.html.php:33
-#: views/vouchers/admin_index.html.php:36
+#: views/vouchers/admin_form.html.php:33 views/vouchers/admin_index.html.php:37
 msgid "Type"
 msgstr ""
 
@@ -43,7 +41,11 @@ msgstr ""
 msgid "Uses left"
 msgstr ""
 
-#: views/vouchers/admin_form.html.php:51
+#: views/vouchers/admin_form.html.php:53
+msgid "delete"
+msgstr ""
+
+#: views/vouchers/admin_form.html.php:59
 msgid "save"
 msgstr ""
 
@@ -51,22 +53,22 @@ msgstr ""
 msgid "vouchers"
 msgstr ""
 
-#: views/vouchers/admin_index.html.php:28
-msgid "new voucher"
-msgstr ""
-
-#: views/vouchers/admin_index.html.php:37
+#: views/vouchers/admin_index.html.php:38
 msgid "Uses Left"
 msgstr ""
 
-#: views/vouchers/admin_index.html.php:38
+#: views/vouchers/admin_index.html.php:39
 msgid "Modified"
 msgstr ""
 
-#: views/vouchers/admin_index.html.php:53
+#: views/vouchers/admin_index.html.php:44
+msgid "Filter"
+msgstr ""
+
+#: views/vouchers/admin_index.html.php:60
 msgid "open"
 msgstr ""
 
-#: views/vouchers/admin_index.html.php:58
+#: views/vouchers/admin_index.html.php:65
 msgid "No items available, yet."
 msgstr ""
