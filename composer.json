@@ -5,7 +5,7 @@
     "license": "proprietary",
     "require": {
         "atelierdisko/coupon_code": "^1",
-        "atelierdisko/li3_access": "^2",
+        "atelierdisko/li3_access": "^2.2",
         "bseries/base_core": "^1.5",
         "bseries/ecommerce_core": "^1.5",
         "composer/installers": "^1",
